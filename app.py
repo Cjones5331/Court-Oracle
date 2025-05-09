@@ -10,11 +10,16 @@ st.title("The Court Oracle")
 st.caption("Your live command center for NBA fantasy, Vegas lines, and player intelligence.")
 st.markdown("---")
 
-# --- API SETUP ---
-API_KEY = "d6b340f5f051e9885b02c4d27cf8f32f"
-url = f"https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?regions=us&markets=h2h,spreads,totals,player_points&apiKey={API_KEY}"
+# --- API SETUP ---# 1. API Key must be copied exactly
+API_KEY = "d6b340f5f051e9885b02c4d27cf8f32f"  # or whatever your key is
 
-# --- DATA FETCH ---
+# 2. Updated URL with working sport, region, and market
+url = f"https://api.the-odds-api.com/v4/sports/basketball_nba/odds?regions=us&markets=spreads&apiKey={API_KEY}"
+
+# 3. You are calling requests.get(url) and checking status_code == 200
+response = requests.get(url)
+if response.status_code == 200:
+    ...# --- DATA FETCH ---
 response = requests.get(url)
 if response.status_code != 200:
     st.error("Failed to retrieve data from The Odds API. Check your API key or plan limit.")
