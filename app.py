@@ -23,8 +23,9 @@ if response.status_code == 200:
     st.subheader("**Live NBA Matchups**")
 
     for game in data:
-        teams = game.get("teams", ["Unknown", "Unknown"])
-        start_time = datetime.fromisoformat(game["commence_time"].replace("Z", "+00:00"))
+    if "teams" in game and "commence_time" in game:
+        teams = game["teams"]
+        start_time = datetime.fromisoformat(game["commence_time"].replace("Z", "+00:00")
         st.markdown(f"### {teams[0]} vs {teams[1]}")
         st.caption(f"**Tip-off:** {start_time.strftime('%b %d, %I:%M %p')}")
 
