@@ -17,7 +17,21 @@ url = f"https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?regions=us&m
 # Fetch odds
 response = requests.get(url)
 
-if response.status_code == 200:
+for game in data:
+    if "teams" in game and "commence_time" in game:
+        teams = game["teams"]
+        start_time = datetime.fromisoformat(game["commence_time"].replace("Z", "+00:00"))
+
+        st.markdown(f"### {teams[0]} vs {teams[1]}")
+        st.caption(f"**Tip-off:** {start_time}")
+
+        for book in game["bookmakers"]:
+            st.markdown(f"**{book['title']}**")
+            for market in book["markets"]:
+                st.markdown(f"_{market['key']}_")
+                for outcome in market["outcomes"]:
+                    st.write(f"{outcome['name']}: {outcome['price']}")
+                st.markdown("----"):
     data = response.json()
 
     st.subheader("**Live NBA Matchups**")
