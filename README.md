@@ -1,10 +1,12 @@
 # The Court Oracle
 
-A Streamlit-based dashboard designed to forecast NBA player performance, track Vegas odds, and provide fantasy/betting insights.
+A Streamlit dashboard that shows live NBA odds, spreads, totals, and player props using The Odds API.
 
-## How to Run
-
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Run the app:
+   ```bash
+   streamlit run app.py
+   ```
